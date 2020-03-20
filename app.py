@@ -1,14 +1,5 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'ui.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import pathlib
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -54,6 +45,8 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
 
+        self.select_video.clicked.connect(self.select_video_file)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -66,6 +59,17 @@ class Ui_MainWindow(object):
         self.select_video.setText(_translate("MainWindow", "Select Video File"))
         self.label_2.setText(_translate("MainWindow", "Video File Selected"))
         self.pushButton.setText(_translate("MainWindow", "Summarize Video"))
+
+    def select_video_file(self):
+        file_path, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Select Image", "", "Video Files(*.mp4 *.avi)")
+        URL_OF_VIDEO = str(pathlib.Path(file_path)) # get's the full path with one slash in between
+        return URL_OF_VIDEO
+
+    def summarize_video(self):
+        pass
+
+    def run_yolo_on_video(self):
+        pass
 
 
 if __name__ == "__main__":
